@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
+import { Card, CardTitle, CardText, CardImg, CardImgOverlay } from 'reactstrap';
 
 export default function App() {
 
@@ -19,12 +20,20 @@ export default function App() {
   }, [])
 
   return (
-    <div className="app">
-      <h1>{nasaData.title}</h1>
-      <div className="image"><img src={nasaData.url} alt={nasaData.copyright} width="300"></img></div>
-      <h2>{nasaData.date}</h2>
-      <div className="explanation">{nasaData.explanation}</div>
-
+    <div className="container">
+      <h1>Nasa Photo of the Day</h1><br />
+      <Card inverse className="cardBody">
+        <CardImg width="30%" src={nasaData.hdurl} alt={nasaData.title} />
+        <CardImgOverlay className="cardBody">
+          <CardTitle tag="h2">{nasaData.title}</CardTitle>
+          <CardText>{nasaData.explanation}</CardText>
+          <CardText>
+            <small className="text-muted">Copyright: {nasaData.copyright}</small>
+          </CardText>
+        </CardImgOverlay>
+      </Card>
     </div>
   );
+  
+
 }
